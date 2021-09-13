@@ -6,7 +6,6 @@
 package com.example.demo.rest;
 
 import com.example.demo.service.CallCompilerProgrammaticallyExample;
-import static com.example.demo.service.CallCompilerProgrammaticallyExample.compile;
 import com.example.demo.util.QRCodeUtil;
 import com.example.demo.util.ClassUtils;
 import com.example.demo.util.ExcellExporter;
@@ -110,7 +109,7 @@ public class HikariExcelEndPoint {
     }
 
     @GetMapping("/invoke")
-    public int invoke() {
+    public Object invoke() {
         Class clazz = SampleClass.class;
         SampleClass sampleClass = new SampleClass();
         Object result = 0;
@@ -136,7 +135,7 @@ public class HikariExcelEndPoint {
         } catch (SecurityException ex) {
             Logger.getLogger(HikariExcelEndPoint.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (int) result;
+        return result;
     }
 
     @GetMapping("/getField")
@@ -233,15 +232,15 @@ public class HikariExcelEndPoint {
             }
         }
     }
-    
+
     @GetMapping("/test/compile")
-    public String compile2(){
+    public String compile2() {
         CallCompilerProgrammaticallyExample ccpe = new CallCompilerProgrammaticallyExample();
-         String compiledCode = CallCompilerProgrammaticallyExample.compile(
-        "function hello() {" +
-          "for (i = arr.length; i > 0; i--) {alert(i)};" +
-        "}" +
-        "hello();");
+        String compiledCode = CallCompilerProgrammaticallyExample.compile(
+                "function hello() {"
+                + "for (i = arr.length; i > 0; i--) {alert(i)};"
+                + "}"
+                + "hello();");
         return compiledCode;
     }
 }

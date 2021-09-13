@@ -1,12 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.util.PrettyPrintingMap;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,16 +22,11 @@ public class DemoApplication {
                 new Item("apple", 20, new BigDecimal("9.99"))
         );
 
-        //group by price
-        Map<BigDecimal, List<Item>> groupByPriceMap
-                = items.stream().collect(Collectors.groupingBy(Item::getPrice));
-
-        System.out.println(new PrettyPrintingMap<BigDecimal, List<Item>>(groupByPriceMap));
- 
         SpringApplication.run(DemoApplication.class, args);
     }
-    
-    public static class Item{
+
+    public static class Item {
+
         private String name;
         private Integer total;
         private BigDecimal price;
@@ -73,13 +65,10 @@ public class DemoApplication {
         public String toString() {
             return "Item{" + "name=" + name + ", total=" + total + ", price=" + price + '}';
         }
-        
 
         public Item() {
         }
-        
-        
-                
+
     }
 
     static final String JAVA_SOURCE_CODE = ""

@@ -66,15 +66,12 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
-        
         <!-- https://mvnrepository.com/artifact/com.google.javascript/closure-compiler -->
         <dependency>
             <groupId>com.google.javascript</groupId>
             <artifactId>closure-compiler</artifactId>
             <version>v20210601</version>
         </dependency>
-
-
 
     </dependencies>
 
