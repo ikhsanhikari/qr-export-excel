@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Hikari Compiler
+	</title>
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+	<!-- It will create a division for
+		compiler and embed that into
+		web page-->
+		<div class="container">
+			<h1>Live code </h1>
+			<div class="row">
+				<!-- <div class="col-md-5"> -->
+					<textarea class="form-control" style="width: 700px;height: 300px" id="code"></textarea>
+				<!-- </div> -->
+					
+			</div><br>
+			<div class="row">
+				<button class="btn btn-primary" id="compileBtn">Run</button>	
+			</div>
+			<br>OUTPUT:
+			<div class="row" >
+
+				<pre id="result" style="color: white"></pre>
+			</div>
+		</div>
+
+		<!-- <button class="btn-primary btn" onclick="ambilstorage()">Ambil</button> -->
+
+		<script type="text/javascript">
+			document.getElementById('compileBtn').addEventListener('click',function(){
+				compile();
+			})
+
+			async function compile(){
+				req = {}
+				req.code = document.getElementById('code').value;
+				req.output=''
+				url = 'http://localhost:9090/'
+				const comipleResponse = await fetch(url+'compile',{
+					method:'POST',
+					body:JSON.stringify(req),
+					headers:{
+						'Content-type':'application/json'
+					}
+				});
+				const content = await comipleResponse.json();
+				document.getElementById('result').innerHTML = content.output;
+				document.getElementById('result').style.backgroundColor = 'black';
+				document.getElementById('result').style.color = 'white';
+				localStorage.setItem('nama','elisa');
+			}
+
+
+			function ambilstorage(){
+				var a = localStorage.getItem('nama');
+				alert(a);	
+			}
+		</script>	
+
+
+
+
+		
+	
+
+	<!-- This script tag contains the
+		javascript code in the written URL -->
+	<script src=
+"https://www.jdoodle.com/assets/jdoodle-pym.min.js"
+		type="text/javascript">
+	</script>
+</body>
+<style type="text/css">
+</style>
+</html>
